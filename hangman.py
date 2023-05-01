@@ -3,7 +3,6 @@ import os
 from words import word_list
 from graphics import stages
 
-
 def choose_mode():
     choice = input("\nType '1' for single-player or '2' for multiplayer: ")
     if choice not in ["1", "2"]:
@@ -36,39 +35,35 @@ lives = 6
 os.system('clear')
 
 if mode == "2":
-    print("Player 1, start game.")
+    print("Player 2, start game.")
 else:
     print("Start game.")
 
 while ("_" in display) and (lives > 0):
-    print(f"\nProgress: {' '.join(display)}")
+    print(f"Progress: {' '.join(display)}")
     if len(wrong_guesses) > 0:
         print(f"Previous wrong guesses: {', '.join(wrong_guesses)}.\n{lives} guesses remaining.")
     else:
         print("No wrong guesses yet.\n6 guesses remaining.")
     print(stages[lives])
     guess = input("\nGuess a letter: ").lower()
+    os.system('clear')
     if guess in display or guess in wrong_guesses:
-        os.system('clear')
         print(f"The letter '{guess}' has already been guessed.")
     elif len(guess) > 1:
-        os.system('clear')
         print("Please enter just one letter.")
     else:
         if guess.isalpha() == False:
-            os.system('clear')
             print("Invalid input. Please enter a letter.")
         else:
             if guess not in chosen_word:
                 lives -= 1
                 wrong_guesses.append(guess)
-                os.system('clear')
                 print(f"Incorrect. '{guess}' is not part of the word.")
             else:    
                 for i in range(0, len(chosen_word)):
                     if chosen_word[i] == guess:
                         display[i] = guess
-                os.system('clear')
                 print(f"Correct - '{guess}' is part of the word.")
 
 print(stages[lives])
