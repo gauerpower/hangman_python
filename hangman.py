@@ -66,6 +66,7 @@ while ("_" in display) and (lives > 0):
                         display[i] = guess
                 print(f"Correct - '{guess}' is part of the word.")
 
+os.system('clear')
 print(stages[lives])
 if lives > 0:
     print(f"You win.\nWord was: {chosen_word}")
